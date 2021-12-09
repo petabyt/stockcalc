@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StockCalc</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Stock Calc</h1>
+	<p>Lightweight percentage calculators, no nonsense.</p>
+	<div class="view" id="percent-change">
+		<h1>Percentage Change Calculator</h1>
+		<p><i>Ex: Bitcoin price 30k to 60k is a 100% increase</i></p>
+		<input onkeyup="percentChange(this)" placeholder="Value A">
+		<input onkeyup="percentChange(this)" placeholder="Value B">
+		<div class="output">Some percentage</div>
+		<code>Formula: ((b - a) / a) * 100</code>
+	</div>
+	<div class="view" id="percent-of">
+		<h1>Percentage Of Calculator</h1>
+		<p><i>Ex: 50% of 16 is 8</i></p>
+		<input onkeyup="percentOf(this)" placeholder="Percent">
+		Percent of
+		<input onkeyup="percentOf(this)" placeholder="Number">
+		is
+		<div class="output">Some percentage</div>
+		<code>Formula: (a / 100) * b</code>
+	</div>
+</body>
+<script>
+	function getCalc(e) {
+		var calc = {
+			invalid: false,
+			inputs: [],
+			output: 0
+		};
+
+		var p = e.parentElement.children;
+		for (var i = 0; i < p.length; i++) {
+			if (p[i].tagName == "INPUT") {
+				var matches = p[i].value.match(/([0-9.]+)/g)
+				if (matches == null) {
+					calc.output.innerHTML = "Input is invalid";
+					calc.invalid = true;
+				} else {
+					calc.inputs.push(Number(matches.join("")));
+				}
+			} else if (p[i].tagName == "DIV") {
+				calc.output = p[i];
+			}
+		}
+
+		return calc;
+	}
+
+	function percentChange(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML =
+			((calc.inputs[1] - calc.inputs[0])
+			/ Math.abs(calc.inputs[0])) * 100;
+		calc.output.innerHTML += "%";
+	}
+
+	function percentOf(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		console.log(calc);
+
+		calc.output.innerHTML =
+			(calc.inputs[0] / 100) * calc.inputs[1]
+	}
+</script>
+</html>
