@@ -4,8 +4,9 @@ body {
 	margin: 0px;
 	text-align: center;
 
-	background: #1e1e1e;
+	background: #2f3762;
 	color: white;
+	font-family: sans-serif;
 }
 
 h1 {
@@ -22,7 +23,7 @@ p {
 	text-align: center;
 	width: 500px;
 	margin: auto;
-	height: 100vh;
+	height: 600px;
 	border-top: 1px solid white;
 }
 
@@ -35,7 +36,9 @@ p {
 	margin-bottom: 10px;
 	background: #ece8e8;
 	color: #373737;
+
 	padding: 10px;
+	box-sizing: border-box;
 }
 
 body * {
@@ -45,6 +48,6 @@ body * {
 
 @media only screen and (max-width: 600px) {
 	.view {
-		width: 500px;
+		width: 90%;
 	}
 }
