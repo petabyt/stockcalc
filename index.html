@@ -14,22 +14,54 @@
 		<h1>Percentage Change Calculator</h1>
 		<p><i>Ex: Bitcoin price 30k to 60k is a 100% increase</i></p>
 		<input onkeyup="percentChange(this)" placeholder="Value A">
+		to
 		<input onkeyup="percentChange(this)" placeholder="Value B">
-		<div class="output" onclick="navigator.clipboard.writeText(this.innerHTML)">A percentage</div>
+		is a
+		<div class="output" onclick="copy(this)">A percentage of change</div>
 		<code>Formula: ((b - a) / a) * 100</code>
 	</div>
 	<div class="view" id="percent-of">
 		<h1>Percentage Of Calculator</h1>
 		<p><i>Ex: 50% of 16 is 8</i></p>
 		<input onkeyup="percentOf(this)" placeholder="Percent">
-		Percent of
+		percent of
 		<input onkeyup="percentOf(this)" placeholder="Number">
 		is
 		<div class="output">A number</div>
 		<code>Formula: (a / 100) * b</code>
 	</div>
+	<div class="view" id="part-of">
+		<h1>Reverse Percent Of Calculator</h1>
+		<p><i>Ex: 8 is 17% of 45</i></p>
+		<input onkeyup="partsOf(this)" placeholder="Number">
+		in
+		<input onkeyup="partsOf(this)" placeholder="Number">
+		is
+		<div class="output">A percentage</div>
+		<code>Formula: (a / b) * 100</code>
+	</div>
+	<div class="view" id="hodl-calc">
+		<h1>Hodl Calculator</h1>
+		<p><i>Ex: If I kept $100 of Etherium when it was at $500, at price $4000 would have $X</i></p>
+		<input onkeyup="hodlCalc(this)" placeholder="Amount bought">
+		bought at price
+		<input onkeyup="hodlCalc(this)" placeholder="Buy price">
+		if held to price
+		<input onkeyup="hodlCalc(this)" placeholder="Sell price">
+		would now be
+		<div class="output">A number</div>
+		<code>Formula: (a / b) * c</code>
+	</div>
 </body>
 <script>
+	function copy(e) {
+		navigator.clipboard.writeText(e.innerHTML);
+	}
+
+	function prep(n) {
+		return String(n.toFixed(2));
+	}
+
 	function getCalc(e) {
 		var calc = {
 			invalid: false,
@@ -61,10 +93,10 @@
 			return;
 		}
 
-		calc.output.innerHTML =
+		calc.output.innerHTML = prep(
 			((calc.inputs[1] - calc.inputs[0])
-			/ Math.abs(calc.inputs[0])) * 100;
-		calc.output.innerHTML += "%";
+			/ Math.abs(calc.inputs[0])) * 100
+		) + "%";
 	}
 
 	function percentOf(e) {
@@ -73,8 +105,31 @@
 			return;
 		}
 
-		calc.output.innerHTML =
+		calc.output.innerHTML = prep(
 			(calc.inputs[0] / 100) * calc.inputs[1]
+		);
+	}
+
+	function hodlCalc(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML = prep(
+			(calc.inputs[0] / calc.inputs[1]) * calc.inputs[2]
+		);
+	}
+
+	function partsOf(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML = prep(
+			(calc.inputs[0] / calc.inputs[1]) * 100
+		) + "%";
 	}
 </script>
 </html>
