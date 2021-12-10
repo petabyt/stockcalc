@@ -8,13 +8,14 @@
 </head>
 <body>
 	<h1>Stock Calc</h1>
-	<p>Lightweight percentage calculators, no nonsense.</p>
+	<p>Lightweight percentage calculators, no nonsense.
+	<br><i>Made by Daniel Cook</i></p>
 	<div class="view" id="percent-change">
 		<h1>Percentage Change Calculator</h1>
 		<p><i>Ex: Bitcoin price 30k to 60k is a 100% increase</i></p>
 		<input onkeyup="percentChange(this)" placeholder="Value A">
 		<input onkeyup="percentChange(this)" placeholder="Value B">
-		<div class="output">Some percentage</div>
+		<div class="output" onclick="navigator.clipboard.writeText(this.innerHTML)">A percentage</div>
 		<code>Formula: ((b - a) / a) * 100</code>
 	</div>
 	<div class="view" id="percent-of">
@@ -24,7 +25,7 @@
 		Percent of
 		<input onkeyup="percentOf(this)" placeholder="Number">
 		is
-		<div class="output">Some percentage</div>
+		<div class="output">A number</div>
 		<code>Formula: (a / 100) * b</code>
 	</div>
 </body>
@@ -71,8 +72,6 @@
 		if (calc.invalid) {
 			return;
 		}
-
-		console.log(calc);
 
 		calc.output.innerHTML =
 			(calc.inputs[0] / 100) * calc.inputs[1]
