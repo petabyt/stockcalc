@@ -8,8 +8,14 @@
 </head>
 <body>
 	<h1>Stock Calc</h1>
-	<p>Lightweight percentage calculators, no nonsense.
+	<p>Lightweight percentage calculators, purely for convenience.
 	<br><i>Made by Daniel Cook</i></p>
+	<div id="index">
+		<p><a href="#percent-change">Percent Change Calculator</a></p>
+		<p><a href="#percent-of">Percent Of Calculator</a></p>
+		<p><a href="#part-of">Fraction to Percent Converter</a></p>
+		<p><a href="#hodl-calc">Hodl Calculator</a></p>
+	</div>
 	<div class="view" id="percent-change">
 		<h1>Percentage Change Calculator</h1>
 		<p><i>Ex: Bitcoin price 30k to 60k is a 100% increase</i></p>
@@ -31,12 +37,11 @@
 		<code>Formula: (a / 100) * b</code>
 	</div>
 	<div class="view" id="part-of">
-		<h1>Reverse Percent Of Calculator</h1>
+		<h1>Fraction to Percent Calculator</h1>
 		<p><i>Ex: 8 is 17% of 45</i></p>
 		<input onkeyup="partsOf(this)" placeholder="Number">
-		in
+		is some percentage of
 		<input onkeyup="partsOf(this)" placeholder="Number">
-		is
 		<div class="output">A percentage</div>
 		<code>Formula: (a / b) * 100</code>
 	</div>
@@ -44,9 +49,9 @@
 		<h1>Hodl Calculator</h1>
 		<p><i>Ex: If I kept $100 of Etherium when it was at $500, at price $4000 would have $X</i></p>
 		<input onkeyup="hodlCalc(this)" placeholder="Amount bought">
-		bought at price
+		if bought at price
 		<input onkeyup="hodlCalc(this)" placeholder="Buy price">
-		if held to price
+		and sold at price
 		<input onkeyup="hodlCalc(this)" placeholder="Sell price">
 		would now be
 		<div class="output">A number</div>
