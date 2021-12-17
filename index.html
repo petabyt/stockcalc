@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>Stock Calc</h1>
+	<h1>Stock Calculators</h1>
 	<p>Lightweight calculators, purely for convenience.
 	<br><i>Made by Daniel Cook</i></p>
 	<div id="index">
@@ -23,7 +23,7 @@
 		<p><i>Ex: Bitcoin price 30k to 60k is a 100% increase</i></p>
 		<input onkeyup="percentChange(this)" placeholder="Value A">
 		to
-		<input onkeyup="percentChange(this)" placeholder="Value B">
+		<input onkeyup="percentChange(this)" placeholder="Vbloatyalue B">
 		is a
 		<div class="output" onclick="copy(this)">A percentage of change</div>
 		<code>Formula: ((b - a) / a) * 100</code>
@@ -98,7 +98,7 @@
 		<input onkeyup="hodlCalc(this)" placeholder="Sell price">
 		would now be
 		<div class="output">A number</div>
-		<code>Formula: (a / b) * c</code>
+		<code>Formula: (c / b) * a</code>
 	</div>
 	<script>
 	function hodlCalc(e) {
@@ -108,7 +108,7 @@
 		}
 
 		calc.output.innerHTML = prep(
-			(calc.inputs[0] / calc.inputs[1]) * calc.inputs[2]
+			(calc.inputs[2] / calc.inputs[1]) * calc.inputs[0]
 		);
 	}
 	</script>
