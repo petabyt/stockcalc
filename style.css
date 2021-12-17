@@ -33,6 +33,7 @@ a {
 	margin: 10px;
 	display: block;
 	background: #272c46;
+	text-decoration: none;
 }
 
 #index, .view {

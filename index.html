@@ -17,6 +17,7 @@
 		<p><a href="#hodl-calc">Hodl Calculator</a></p>
 		<p><a style="background: #337b33;" href="custom.html">Have a custom calculator made</a></p>
 	</div>
+
 	<div class="view" id="percent-change">
 		<h1>Percentage Change Calculator</h1>
 		<p><i>Ex: Bitcoin price 30k to 60k is a 100% increase</i></p>
@@ -27,6 +28,20 @@
 		<div class="output" onclick="copy(this)">A percentage of change</div>
 		<code>Formula: ((b - a) / a) * 100</code>
 	</div>
+	<script>
+	function percentChange(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML = prep(
+			((calc.inputs[1] - calc.inputs[0])
+			/ Math.abs(calc.inputs[0])) * 100
+		) + "%";
+	}
+	</script>
+
 	<div class="view" id="percent-of">
 		<h1>Percentage Of Calculator</h1>
 		<p><i>Ex: 50% of 16 is 8</i></p>
@@ -37,6 +52,19 @@
 		<div class="output">A number</div>
 		<code>Formula: (a / 100) * b</code>
 	</div>
+	<script>
+	function percentOf(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML = prep(
+			(calc.inputs[0] / 100) * calc.inputs[1]
+		);
+	}
+	</script>
+
 	<div class="view" id="part-of">
 		<h1>Fraction to Percent Calculator</h1>
 		<p><i>Ex: 8 is 17% of 45</i></p>
@@ -47,6 +75,19 @@
 		<div class="output">A percentage</div>
 		<code>Formula: (a / b) * 100</code>
 	</div>
+	<script>
+	function partsOf(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML = prep(
+			(calc.inputs[0] / calc.inputs[1]) * 100
+		) + "%";
+	}
+	</script>
+
 	<div class="view" id="hodl-calc">
 		<h1>Hodl Calculator</h1>
 		<p><i>Ex: If I kept $100 of Etherium when it was at $500, at price $4000 would have $X</i></p>
@@ -59,6 +100,18 @@
 		<div class="output">A number</div>
 		<code>Formula: (a / b) * c</code>
 	</div>
+	<script>
+	function hodlCalc(e) {
+		calc = getCalc(e);
+		if (calc.invalid) {
+			return;
+		}
+
+		calc.output.innerHTML = prep(
+			(calc.inputs[0] / calc.inputs[1]) * calc.inputs[2]
+		);
+	}
+	</script>
 </body>
 <script>
 	function copy(e) {
@@ -92,51 +145,6 @@
 		}
 
 		return calc;
-	}
-
-	function percentChange(e) {
-		calc = getCalc(e);
-		if (calc.invalid) {
-			return;
-		}
-
-		calc.output.innerHTML = prep(
-			((calc.inputs[1] - calc.inputs[0])
-			/ Math.abs(calc.inputs[0])) * 100
-		) + "%";
-	}
-
-	function percentOf(e) {
-		calc = getCalc(e);
-		if (calc.invalid) {
-			return;
-		}
-
-		calc.output.innerHTML = prep(
-			(calc.inputs[0] / 100) * calc.inputs[1]
-		);
-	}
-
-	function hodlCalc(e) {
-		calc = getCalc(e);
-		if (calc.invalid) {
-			return;
-		}
-
-		calc.output.innerHTML = prep(
-			(calc.inputs[0] / calc.inputs[1]) * calc.inputs[2]
-		);
-	}
-
-	function partsOf(e) {
-		calc = getCalc(e);
-		if (calc.invalid) {
-			return;
-		}
-
-		calc.output.innerHTML = prep(
-			(calc.inputs[0] / calc.inputs[1]) * 100
-		) + "%";
 	}
 </script>
 </html>
